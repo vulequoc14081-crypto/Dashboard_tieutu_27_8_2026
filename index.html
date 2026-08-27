@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIẾN ĐỘ TIỂU TU 2026 — PHẦN VIỆC PX.BDSC | Nhà máy Nhiệt điện Sông Hậu 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pvp-green: #009D48;
+      --pvp-green-light: #E6F6ED;
+      --pvp-navy: #364185;
+      --pvp-navy-light: #EEF0F8;
+      --pvp-amber: #F5A623;
+      --pvp-amber-light: #FEF6E9;
+      --pvp-red: #D0342C;
+      --pvp-red-light: #FDEBEA;
+      --pvp-bg: #F4F6F9;
+      --pvp-card: #FFFFFF;
+      --pvp-text: #000000;
+      --pvp-text-muted: #111827;
+      --pvp-border: #CBD5E1;
+      --pvp-shadow: 0 2px 8px rgba(26, 31, 54, 0.06);
+      --pvp-shadow-lg: 0 6px 18px rgba(26, 31, 54, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--pvp-bg);
+      color: var(--pvp-text);
+      line-height: 1.5;
+      font-size: 15px;
+      padding: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* HEADER */
+    header.dashboard-header {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 140px;
+    }
+
+    .logo-slot {
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-slot img {
+      height: 44px;
+      max-width: 140px;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      background: var(--pvp-navy);
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .header-center {
+      text-align: center;
+      flex: 1;
+    }
+
+    .header-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--pvp-navy);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--pvp-text-muted);
+      margin-top: 2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .date-badge {
+      background: var(--pvp-navy);
+      color: #FFFFFF;
+      font-size: 20px;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.1;
+    }
+
+    .date-badge-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: 0.85;
+      letter-spacing: 1px;
+    }
+
+    /* TOP SCREEN SECTION */
+    .top-screen {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* KPI STRIP - 5 CARDS */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card.highlight {
+      border-top: 4px solid var(--pvp-green);
+    }
+
+    .kpi-card.co-nhiet {
+      border-top: 4px solid #E67E22;
+    }
+
+    .kpi-card.dien-ci {
+      border-top: 4px solid var(--pvp-navy);
+    }
+
+    .kpi-card.success {
+      border-top: 4px solid var(--pvp-green);
+    }
+
+    .kpi-card.unplanned {
+      border-top: 4px solid #8E44AD;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pvp-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .kpi-number {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--pvp-text);
+      letter-spacing: -1px;
+    }
+
+    .kpi-card.highlight .kpi-number {
+      color: var(--pvp-green);
+    }
+
+    .kpi-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--pvp-text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .kpi-badge.green {
+      background: var(--pvp-green-light);
+      color: var(--pvp-green);
+    }
+
+    .kpi-badge.amber {
+      background: var(--pvp-amber-light);
+      color: #B26A00;
+    }
+
+    .kpi-badge.navy {
+      background: var(--pvp-navy-light);
+      color: var(--pvp-navy);
+    }
+
+    .kpi-badge.purple {
+      background: #F3E8FD;
+      color: #6C1E9D;
+    }
+
+    /* ROW: DONUTS & HOTSPOTS */
+    .row-donuts-hotspots {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    /* PROGRESS DONUTS */
+    .donut-panel {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--pvp-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .donut-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .donut-main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .donut-circle-large {
+      width: 146px;
+      height: 146px;
+      border-radius: 50%;
+      background: conic-gradient(var(--pvp-green) 0deg 247.9deg, #E2E8F0 247.9deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 157, 72, 0.15);
+      position: relative;
+    }
+
+    .donut-inner-large {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background: var(--pvp-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .donut-main-val {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--pvp-green);
+      line-height: 1;
+    }
+
+    .donut-main-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--pvp-text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .donut-sub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .donut-sub-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--pvp-bg);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .donut-mini {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .donut-mini.co-nhiet {
+      background: conic-gradient(#E67E22 0deg 175.8deg, #CBD5E1 175.8deg 360deg);
+    }
+
+    .donut-mini.dien-ci {
+      background: conic-gradient(var(--pvp-navy) 0deg 267.2deg, #CBD5E1 267.2deg 360deg);
+    }
+
+    .donut-mini.unplanned {
+      background: conic-gradient(#8E44AD 0deg 275.0deg, #CBD5E1 275.0deg 360deg);
+    }
+
+    .donut-mini-inner {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pvp-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--pvp-text);
+    }
+
+    .donut-sub-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .donut-sub-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pvp-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .donut-sub-stat {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--pvp-text-muted);
+    }
+
+    /* HOTSPOTS & RISKS - MOST PROMINENT */
+    .hotspots-panel {
+      background: #FFFDF9;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--pvp-shadow);
+      border: 2px solid #F5A623;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hotspots-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .hotspots-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hotspots-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #9C4400;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .hotspots-count-badge {
+      background: #D0342C;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .hotspots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+      max-height: 184px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .hotspot-card {
+      background: var(--pvp-card);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--pvp-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      position: relative;
+    }
+
+    .hotspot-card.critical {
+      border-left: 4px solid var(--pvp-red);
+      background: #FFFBFB;
+    }
+
+    .hotspot-card.warning {
+      border-left: 4px solid var(--pvp-amber);
+    }
+
+    .hotspot-card.unplanned-item {
+      border-right: 3px solid var(--pvp-navy);
+    }
+
+    .hotspot-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .hotspot-wo {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--pvp-navy);
+      background: var(--pvp-navy-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .hotspot-unit {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: #E2E8F0;
+      color: #334155;
+    }
+
+    .hotspot-unit.S1 { background: #E0F2FE; color: #0369A1; }
+    .hotspot-unit.S2 { background: #FEF3C7; color: #B45309; }
+
+    .hotspot-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pvp-text);
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .hotspot-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .progress-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .hotspot-pct {
+      font-size: 13px;
+      font-weight: 800;
+      min-width: 38px;
+      text-align: right;
+    }
+
+    .hotspot-action {
+      font-size: 11.5px;
+      color: var(--pvp-text-muted);
+      line-height: 1.25;
+      background: var(--pvp-bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* BOTTOM SCREEN: TABLE + NEXT DAY */
+    .bottom-screen {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    /* DETAIL TABLE PANEL */
+    .table-panel {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .table-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #0F172A;
+      border: 1px solid #334155;
+      padding: 6px;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      border: 1px solid #1E293B;
+      background: #1E293B;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #E2E8F0;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      text-shadow: none;
+    }
+
+    .tab-btn:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+
+    .tab-btn.active {
+      background: #2563EB;
+      border-color: #3B82F6;
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-input {
+      border: 1px solid #94A3B8;
+      border-radius: 6px;
+      padding: 6px 12px 6px 28px;
+      font-size: 12.5px;
+      font-weight: 700;
+      background: #F8FAFC;
+      color: #000000;
+      outline: none;
+      width: 180px;
+      text-shadow: none;
+    }
+
+    .search-input:focus {
+      border-color: #000000;
+      background: #FFF;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #000000;
+      pointer-events: none;
+      font-size: 12px;
+    }
+
+    .table-container {
+      max-height: 480px;
+      overflow-y: auto;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+    }
+
+    table.wo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    table.wo-table th {
+      background: #F1F5F9;
+      color: #000000;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 10px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #CBD5E1;
+      text-shadow: none;
+    }
+
+    table.wo-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #E2E8F0;
+      vertical-align: middle;
+      color: #000000;
+      font-weight: 700;
+      text-shadow: none;
+    }
+
+    table.wo-table tr:hover td {
+      background: #F8FAFD;
+    }
+
+    table.wo-table tr.completed-row td {
+      background: #FCFDFD;
+    }
+
+    .cell-wo {
+      font-weight: 900;
+      color: #000000;
+      font-family: monospace;
+      font-size: 13px;
+      white-space: nowrap;
+      text-shadow: none;
+    }
+
+    .cell-item {
+      font-weight: 900;
+      color: #000000;
+      max-width: 220px;
+      font-size: 13px;
+      text-shadow: none;
+    }
+
+    .cell-desc {
+      font-size: 12.5px;
+      color: #000000;
+      font-weight: 700;
+      max-width: 240px;
+      text-shadow: none;
+    }
+
+    .tag-category {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .tag-category.unplanned {
+      background: #EEF0F8;
+      color: var(--pvp-navy);
+      border: 1px solid #C7D2FE;
+    }
+
+    .tag-category.planned {
+      background: #F1F5F9;
+      color: #475569;
+    }
+
+    .prog-cell-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 100px;
+    }
+
+    .check-icon {
+      color: var(--pvp-green);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    /* NEXT DAY PLAN PANEL */
+    .plan-panel {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-tasks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .plan-task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: var(--pvp-bg);
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid #000000;
+      border: 1px solid #CBD5E1;
+      border-left-width: 4px;
+      border-left-color: #000000;
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+
+    .task-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #000000;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .task-content {
+      flex: 1;
+      color: #000000;
+      font-weight: 800;
+      text-shadow: none;
+    }
+
+    .task-wo-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #000000;
+      background: #FFF;
+      border: 1px solid #000000;
+      padding: 0 4px;
+      border-radius: 3px;
+      margin-left: 4px;
+      font-family: monospace;
+      text-shadow: none;
+    }
+
+    /* FOOTER */
+    footer.dashboard-footer {
+      background: var(--pvp-card);
+      border-radius: 12px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--pvp-shadow);
+      border: 1px solid var(--pvp-border);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--pvp-text);
+    }
+
+    .footer-assessment {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--pvp-green);
+    }
+
+    .footer-unit {
+      font-weight: 800;
+      color: var(--pvp-navy);
+      background: var(--pvp-navy-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body {
+        background: #FFF;
+        padding: 0;
+        font-size: 11px;
+      }
+
+      .container {
+        gap: 8px;
+        max-width: 100%;
+      }
+
+      header.dashboard-header,
+      .kpi-card,
+      .donut-panel,
+      .hotspots-panel,
+      .table-panel,
+      .plan-panel,
+      footer.dashboard-footer {
+        box-shadow: none;
+        border: 1px solid #CCC;
+      }
+
+      .table-container,
+      .plan-tasks-grid,
+      .hotspots-grid {
+        max-height: none;
+        overflow: visible;
+      }
+
+      .filter-tabs,
+      .search-box {
+        display: none;
+      }
+    }
+
+    /* RESPONSIVENESS */
+    @media (max-width: 1200px) {
+      .kpi-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .row-donuts-hotspots {
+        grid-template-columns: 1fr;
+      }
+      .bottom-screen {
+        grid-template-columns: 1fr;
+      }
+      .plan-tasks-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .kpi-strip {
+        grid-template-columns: 1fr;
+      }
+      header.dashboard-header {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ① HEADER -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <div class="logo-slot">
+          <img src="logo-pvpgb.png" alt="PVPGB" onerror="this.style.display='none'; document.getElementById('logo-fallback-id').style.display='inline-block';">
+          <div id="logo-fallback-id" class="logo-fallback" style="display: none;">PVPGB</div>
+        </div>
+      </div>
+      <div class="header-center">
+        <h1 class="header-title">TIẾN ĐỘ TIỂU TU 2026 — PHẦN VIỆC PX.BDSC</h1>
+        <div class="header-subtitle">Nhà máy Nhiệt điện Sông Hậu 1</div>
+      </div>
+      <div class="header-right">
+        <div class="date-badge">
+          <span class="date-badge-label">Báo cáo ngày</span>
+          <span>27/08/2026</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ② DẢI KPI (5 CARDS) -->
+    <section class="kpi-strip">
+      <div class="kpi-card highlight">
+        <span class="kpi-label">Tổng hạng mục B</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number">420/610</span>
+        </div>
+        <div class="kpi-subtitle">
+          <span class="kpi-badge green">68,85% kế hoạch</span>
+        </div>
+      </div>
+
+      <div class="kpi-card co-nhiet">
+        <span class="kpi-label">Cơ nhiệt</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number">63/129</span>
+        </div>
+        <div class="kpi-subtitle">
+          <span class="kpi-badge amber">48.84% hoàn thành</span>
+        </div>
+      </div>
+
+      <div class="kpi-card dien-ci">
+        <span class="kpi-label">Điện & C&I</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number">357/481</span>
+        </div>
+        <div class="kpi-subtitle">
+          <span class="kpi-badge navy">74.22% hoàn thành</span>
+        </div>
+      </div>
+
+      <div class="kpi-card success">
+        <span class="kpi-label">WO Hoàn thành 100% trong ngày</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number">23</span>
+          <span style="font-size: 16px; font-weight: 700; color: var(--pvp-green);">hạng mục</span>
+        </div>
+        <div class="kpi-subtitle">
+          <span class="kpi-badge green">Đã nghiệm thu</span>
+        </div>
+      </div>
+
+      <div class="kpi-card unplanned">
+        <span class="kpi-label">Việc ngoài KH đang xử lý</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number">7</span>
+          <span style="font-size: 16px; font-weight: 700; color: #8E44AD;">hạng mục</span>
+        </div>
+        <div class="kpi-subtitle">
+          <span class="kpi-badge purple">Phát sinh mục II</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ VÒNG TIẾN ĐỘ + ④ ĐIỂM NÓNG & RỦI RO -->
+    <div class="row-donuts-hotspots">
+      <!-- ③ Vòng tiến độ -->
+      <section class="donut-panel">
+        <div class="panel-title">
+          <span>● Vòng Tiến Độ Thực Hiện</span>
+        </div>
+        <div class="donut-layout">
+          <div class="donut-main-wrapper">
+            <div class="donut-circle-large">
+              <div class="donut-inner-large">
+                <span class="donut-main-val">68,85%</span>
+                <span class="donut-main-lbl">Tổng tiến độ</span>
+              </div>
+            </div>
+          </div>
+          <div class="donut-sub-list">
+            <div class="donut-sub-item">
+              <div class="donut-mini co-nhiet">
+                <div class="donut-mini-inner">49%</div>
+              </div>
+              <div class="donut-sub-info">
+                <div class="donut-sub-name">Cơ nhiệt</div>
+                <div class="donut-sub-stat">63/129 mục (48.84%)</div>
+              </div>
+            </div>
+
+            <div class="donut-sub-item">
+              <div class="donut-mini dien-ci">
+                <div class="donut-mini-inner">74%</div>
+              </div>
+              <div class="donut-sub-info">
+                <div class="donut-sub-name">Điện & C&I</div>
+                <div class="donut-sub-stat">357/481 mục (74.22%)</div>
+              </div>
+            </div>
+
+            <div class="donut-sub-item">
+              <div class="donut-mini unplanned">
+                <div class="donut-mini-inner">76%</div>
+              </div>
+              <div class="donut-sub-info">
+                <div class="donut-sub-name">Ngoài kế hoạch</div>
+                <div class="donut-sub-stat">7 đầu việc phát sinh</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ④ ĐIỂM NÓNG & RỦI RO (MOST PROMINENT) -->
+      <section class="hotspots-panel">
+        <div class="hotspots-header">
+          <div class="hotspots-title-group">
+            <h2 class="hotspots-title">⚡ ĐIỂM NÓNG & RỦI RO CẦN LƯU Ý</h2>
+            <span class="hotspots-count-badge">13 HẠNG MỤC</span>
+          </div>
+          <span style="font-size: 11.5px; color: var(--pvp-text-muted); font-weight: 600;">Sắp xếp theo % tiến độ tăng dần</span>
+        </div>
+
+        
+          <div class="hotspots-grid">
+            
+              <div class="hotspot-card critical unplanned-item">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 45480</span>
+                  <div style="display: flex; gap: 4px;">
+                    <span class="tag-category unplanned">Ngoài KH</span>
+                    <span class="hotspot-unit S2">S2</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Thay thế các khớp giãn nở đường khói hệ thống FGD S2">Thay thế các khớp giãn nở đường khói hệ thống FGD S2</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 5%; background-color: #D0342C;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #D0342C;">5%</span>
+                </div>
+                <div class="hotspot-action" title="Mở PCT, KT an toàn và tháo tôn bao che khớp giãn nở GGH">
+                  <strong>Đang làm:</strong> Mở PCT, KT an toàn và tháo tôn bao che khớp giãn nở GGH
+                </div>
+              </div>
+            
+              <div class="hotspot-card critical ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 45521</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S2">S2</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu hệ thống máy nghiền than Tổ máy 2">Tiểu tu hệ thống máy nghiền than Tổ máy 2</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 10%; background-color: #D0342C;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #D0342C;">10%</span>
+                </div>
+                <div class="hotspot-action" title="Tháo manhole, hàn vỏ con lăn, vệ sinh gió, đo độ mòn chi tiết">
+                  <strong>Đang làm:</strong> Tháo manhole, hàn vỏ con lăn, vệ sinh gió, đo độ mòn chi tiết
+                </div>
+              </div>
+            
+              <div class="hotspot-card critical ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 45647</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S2">S2</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu bộ sấy không khí kiểu quay (GAH) Tổ máy 2">Tiểu tu bộ sấy không khí kiểu quay (GAH) Tổ máy 2</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 10%; background-color: #D0342C;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #D0342C;">10%</span>
+                </div>
+                <div class="hotspot-action" title="Xả nhớt gối đỡ & hộp giảm tốc; thay mới truyền động Air Motor GAH">
+                  <strong>Đang làm:</strong> Xả nhớt gối đỡ & hộp giảm tốc; thay mới truyền động Air Motor GAH
+                </div>
+              </div>
+            
+              <div class="hotspot-card critical ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 41837</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu các Damper đường khói gió lò Tổ máy 1">Tiểu tu các Damper đường khói gió lò Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 40%; background-color: #D0342C;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #D0342C;">40%</span>
+                </div>
+                <div class="hotspot-action" title="Lắp lại damper sau sửa chữa, hàn gia cố seal, kiểm tra vận hành">
+                  <strong>Đang làm:</strong> Lắp lại damper sau sửa chữa, hàn gia cố seal, kiểm tra vận hành
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 40068</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu hệ thống khói gió FGD Tổ máy 1">Tiểu tu hệ thống khói gió FGD Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 60%; background-color: #F5A623;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #F5A623;">60%</span>
+                </div>
+                <div class="hotspot-action" title="Tháo KT, BD vòi thổi bụi & vòi rửa; thay vòi phun HT rửa GGH">
+                  <strong>Đang làm:</strong> Tháo KT, BD vòi thổi bụi & vòi rửa; thay vòi phun HT rửa GGH
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 40543</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu hệ thống nhớt bôi trơn và điều khiển Turbine bơm cấp Tổ máy 1">Tiểu tu hệ thống nhớt bôi trơn và điều khiển Turbine bơm cấp Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 70%; background-color: #F5A623;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #F5A623;">70%</span>
+                </div>
+                <div class="hotspot-action" title="KT, BD các bơm nhớt; thay thế các lọc nhớt hệ thống">
+                  <strong>Đang làm:</strong> KT, BD các bơm nhớt; thay thế các lọc nhớt hệ thống
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning unplanned-item">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 44725</span>
+                  <div style="display: flex; gap: 4px;">
+                    <span class="tag-category unplanned">Ngoài KH</span>
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Kiểm tra, xử lý nứt mối hàn tại ống góp đầu vào bộ quá nhiệt Final RH lò hơi 1">Kiểm tra, xử lý nứt mối hàn tại ống góp đầu vào bộ quá nhiệt Final RH lò hơi 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 70%; background-color: #F5A623;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #F5A623;">70%</span>
+                </div>
+                <div class="hotspot-action" title="PT mối hàn, phát hiện nứt support; hàn hoàn thiện, gia nhiệt & sửa">
+                  <strong>Đang làm:</strong> PT mối hàn, phát hiện nứt support; hàn hoàn thiện, gia nhiệt & sửa
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning unplanned-item">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 32644</span>
+                  <div style="display: flex; gap: 4px;">
+                    <span class="tag-category unplanned">Ngoài KH</span>
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Kiểm tra, xử lý BFPT 1A bị rò chèn phía DE">Kiểm tra, xử lý BFPT 1A bị rò chèn phía DE</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 85%; background-color: #F5A623;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #F5A623;">85%</span>
+                </div>
+                <div class="hotspot-action" title="Thực hiện cân tâm bơm BFPT 1A">
+                  <strong>Đang làm:</strong> Thực hiện cân tâm bơm BFPT 1A
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning unplanned-item">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 39018</span>
+                  <div style="display: flex; gap: 4px;">
+                    <span class="tag-category unplanned">Ngoài KH</span>
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Kiểm tra/xử lý van CV1/CV2-S1 rò nhớt tại cổng L1 Actuator 1">Kiểm tra/xử lý van CV1/CV2-S1 rò nhớt tại cổng L1 Actuator 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 90%; background-color: #F5A623;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #F5A623;">90%</span>
+                </div>
+                <div class="hotspot-action" title="Tháo lắp ống tín hiệu; thay actuator CV2 và hiệu chỉnh hành trình">
+                  <strong>Đang làm:</strong> Tháo lắp ống tín hiệu; thay actuator CV2 và hiệu chỉnh hành trình
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 40051</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu hệ thống nước làm mát tuần hoàn kín Tổ máy 1">Tiểu tu hệ thống nước làm mát tuần hoàn kín Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #009D48;">100%</span>
+                </div>
+                <div class="hotspot-action" title="KT siết bulong, kiểm tra rò rỉ, vệ sinh HT & thay nhớt">
+                  <strong>Đang làm:</strong> KT siết bulong, kiểm tra rò rỉ, vệ sinh HT & thay nhớt
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 41838</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu hệ thống Control Valve lò Tổ máy 1">Tiểu tu hệ thống Control Valve lò Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #009D48;">100%</span>
+                </div>
+                <div class="hotspot-action" title="Vệ sinh sơn van; tra mỡ, sửa chữa van control passing, nghiệm thu">
+                  <strong>Đang làm:</strong> Vệ sinh sơn van; tra mỡ, sửa chữa van control passing, nghiệm thu
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning ">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 40271</span>
+                  <div style="display: flex; gap: 4px;">
+                    
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Tiểu tu MBA kích từ S1">Tiểu tu MBA kích từ S1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #009D48;">100%</span>
+                </div>
+                <div class="hotspot-action" title="Vệ sinh, đo cách điện; làm kín các vị trí rạn nứt keo silicone">
+                  <strong>Đang làm:</strong> Vệ sinh, đo cách điện; làm kín các vị trí rạn nứt keo silicone
+                </div>
+              </div>
+            
+              <div class="hotspot-card warning unplanned-item">
+                <div class="hotspot-top">
+                  <span class="hotspot-wo">WO 39020</span>
+                  <div style="display: flex; gap: 4px;">
+                    <span class="tag-category unplanned">Ngoài KH</span>
+                    <span class="hotspot-unit S1">S1</span>
+                  </div>
+                </div>
+                <div class="hotspot-name" title="Kiểm tra/xử lý van MSV-S1 thường xuyên không đóng mở được trong quá trình khởi động Tổ máy 1">Kiểm tra/xử lý van MSV-S1 thường xuyên không đóng mở được trong quá trình khởi động Tổ máy 1</div>
+                <div class="hotspot-progress-row">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                  </div>
+                  <span class="hotspot-pct" style="color: #009D48;">100%</span>
+                </div>
+                <div class="hotspot-action" title="Phối hợp CI thực hiện hiệu chuẩn van MSV">
+                  <strong>Đang làm:</strong> Phối hợp CI thực hiện hiệu chuẩn van MSV
+                </div>
+              </div>
+            
+          </div>
+        
+      </section>
+    </div>
+
+    <!-- ⑤ BẢNG CHI TIẾT WO + ⑥ KẾ HOẠCH NGÀY KẾ TIẾP -->
+    <div class="bottom-screen">
+      <!-- ⑤ Bảng chi tiết WO -->
+      <section class="table-panel">
+        <div class="table-top-bar">
+          <div class="panel-title" style="margin-bottom: 0;">
+            <span>📋 BẢNG CHI TIẾT CÁC HẠNG MỤC WO (36)</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <div class="filter-tabs">
+              <button class="tab-btn active" onclick="filterWOs('all', this)">Tất cả (36)</button>
+              <button class="tab-btn" onclick="filterWOs('co_nhiet', this)">Cơ nhiệt</button>
+              <button class="tab-btn" onclick="filterWOs('dien_ci', this)">Điện & C&I</button>
+              <button class="tab-btn" onclick="filterWOs('ngoai_kh', this)">Ngoài KH</button>
+              <button class="tab-btn" onclick="filterWOs('s1', this)">S1</button>
+              <button class="tab-btn" onclick="filterWOs('s2', this)">S2</button>
+            </div>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" class="search-input" placeholder="Tìm WO, thiết bị..." oninput="handleSearch()">
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="wo-table" id="woTable">
+            <thead>
+              <tr>
+                <th style="width: 85px;">WO</th>
+                <th>Hạng mục</th>
+                <th style="width: 75px;">Tổ máy</th>
+                <th style="width: 105px;">Nhóm</th>
+                <th>Nội dung thực hiện</th>
+                <th style="width: 140px;">Tiến độ</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40068"
+                    data-text="40068 tiểu tu hệ thống khói gió fgd tổ máy 1 tháo kt, bd vòi thổi bụi & vòi rửa; thay vòi phun ht rửa ggh s1">
+                  <td class="cell-wo">40068</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống khói gió FGD Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Tháo KT, BD vòi thổi bụi & vòi rửa; thay vòi phun HT rửa GGH</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 60%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">60%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40083"
+                    data-text="40083 tiểu tu hệ thống hấp thụ tổ máy 1 lắp hoàn thiện gearbox cánh khuấy p1htd10am005; kt, bd quạt oxidation s1">
+                  <td class="cell-wo">40083</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống hấp thụ Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Lắp hoàn thiện gearbox cánh khuấy P1HTD10AM005; KT, BD quạt oxidation</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 60%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">60%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40088"
+                    data-text="40088 tiểu tu hệ thống nước thải của fgd tổ máy 1 kt, bd bộ phân ly; vệ sinh vòi phun, xử lý chống ăn mòn s1">
+                  <td class="cell-wo">40088</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống nước thải của FGD Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">KT, BD bộ phân ly; vệ sinh vòi phun, xử lý chống ăn mòn</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40543"
+                    data-text="40543 tiểu tu hệ thống nhớt bôi trơn và điều khiển turbine bơm cấp tổ máy 1 kt, bd các bơm nhớt; thay thế các lọc nhớt hệ thống s1">
+                  <td class="cell-wo">40543</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống nhớt bôi trơn và điều khiển Turbine bơm cấp Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">KT, BD các bơm nhớt; thay thế các lọc nhớt hệ thống</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 70%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">70%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40051"
+                    data-text="40051 tiểu tu hệ thống nước làm mát tuần hoàn kín tổ máy 1 kt siết bulong, kiểm tra rò rỉ, vệ sinh ht & thay nhớt s1">
+                  <td class="cell-wo">40051</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống nước làm mát tuần hoàn kín Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">KT siết bulong, kiểm tra rò rỉ, vệ sinh HT & thay nhớt</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40020"
+                    data-text="40020 tiểu tu hệ thống nhớt bôi trơn turbine tổ máy 1 vệ sinh thiết bị, kt bulong coupling, vệ sinh & thay lọc rút hơi s1">
+                  <td class="cell-wo">40020</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống nhớt bôi trơn Turbine Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Vệ sinh thiết bị, KT bulong coupling, vệ sinh & thay lọc rút hơi</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 50%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">50%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41845"
+                    data-text="41845 tiểu tu quạt khói cidf tổ máy 1 thay bulong chân cánh tĩnh, ndt mối hàn, nghiệm thu kết thúc s1">
+                  <td class="cell-wo">41845</td>
+                  <td class="cell-item">
+                    Tiểu tu quạt khói CIDF Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Thay bulong chân cánh tĩnh, NDT mối hàn, nghiệm thu kết thúc</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41838"
+                    data-text="41838 tiểu tu hệ thống control valve lò tổ máy 1 vệ sinh sơn van; tra mỡ, sửa chữa van control passing, nghiệm thu s1">
+                  <td class="cell-wo">41838</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống Control Valve lò Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Vệ sinh sơn van; tra mỡ, sửa chữa van control passing, nghiệm thu</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41837"
+                    data-text="41837 tiểu tu các damper đường khói gió lò tổ máy 1 lắp lại damper sau sửa chữa, hàn gia cố seal, kiểm tra vận hành s1">
+                  <td class="cell-wo">41837</td>
+                  <td class="cell-item">
+                    Tiểu tu các Damper đường khói gió lò Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Lắp lại damper sau sửa chữa, hàn gia cố seal, kiểm tra vận hành</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 40%; background-color: #D0342C;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #D0342C; width: 34px; text-align: right;">40%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41859"
+                    data-text="41859 tiểu tu bồn flash tank tổ máy 1 vệ sinh bảo dưỡng van; tháo kt trong bồn, nghiệm thu đóng manhole s1">
+                  <td class="cell-wo">41859</td>
+                  <td class="cell-item">
+                    Tiểu tu bồn Flash Tank Tổ máy 1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Vệ sinh bảo dưỡng van; tháo KT trong bồn, nghiệm thu đóng manhole</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45521"
+                    data-text="45521 tiểu tu hệ thống máy nghiền than tổ máy 2 tháo manhole, hàn vỏ con lăn, vệ sinh gió, đo độ mòn chi tiết s2">
+                  <td class="cell-wo">45521</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống máy nghiền than Tổ máy 2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Tháo manhole, hàn vỏ con lăn, vệ sinh gió, đo độ mòn chi tiết</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 10%; background-color: #D0342C;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #D0342C; width: 34px; text-align: right;">10%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45647"
+                    data-text="45647 tiểu tu bộ sấy không khí kiểu quay (gah) tổ máy 2 xả nhớt gối đỡ & hộp giảm tốc; thay mới truyền động air motor gah s2">
+                  <td class="cell-wo">45647</td>
+                  <td class="cell-item">
+                    Tiểu tu bộ sấy không khí kiểu quay (GAH) Tổ máy 2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Xả nhớt gối đỡ & hộp giảm tốc; thay mới truyền động Air Motor GAH</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 10%; background-color: #D0342C;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #D0342C; width: 34px; text-align: right;">10%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="chung/bop"
+                    data-wo="42708"
+                    data-text="42708 tiểu tu hệ thống ups & dc, ắc quy nhà điều khiển ahs nhánh a kt, vệ sinh tủ ups & dc, mba & giàn ắc quy; phóng xả ắc quy chung/bop">
+                  <td class="cell-wo">42708</td>
+                  <td class="cell-item">
+                    Tiểu tu hệ thống UPS & DC, ắc quy nhà điều khiển AHS nhánh A
+                    
+                  </td>
+                  <td><span class="hotspot-unit Chung/BOP">Chung/BOP</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT, vệ sinh tủ UPS & DC, MBA & giàn ắc quy; phóng xả ắc quy</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41390"
+                    data-text="41390 tiểu tu các tủ ups & dc nhánh b hệ thống fgd s1 vệ sinh tủ, lưới lọc bụi; kt đầu nối, tiếp địa, điện trở cách điện s1">
+                  <td class="cell-wo">41390</td>
+                  <td class="cell-item">
+                    Tiểu tu các tủ UPS & DC nhánh B hệ thống FGD S1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh tủ, lưới lọc bụi; KT đầu nối, tiếp địa, điện trở cách điện</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="chung/bop"
+                    data-wo="32488"
+                    data-text="32488 tiểu tu các tủ phân phối, ups và ắc quy hệ thống quan trắc vệ sinh, kt tủ điện, ups, bộ lưu điện & giàn ắc quy, phóng xả chung/bop">
+                  <td class="cell-wo">32488</td>
+                  <td class="cell-item">
+                    Tiểu tu các tủ phân phối, UPS và ắc quy hệ thống quan trắc
+                    
+                  </td>
+                  <td><span class="hotspot-unit Chung/BOP">Chung/BOP</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh, KT tủ điện, UPS, bộ lưu điện & giàn ắc quy, phóng xả</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41148"
+                    data-text="41148 tiểu tu mba chính, mba tự dùng và các vị trí nối với bus duct s1 kt mba, làm mát, sứ xuyên, rơ le bảo vệ, tiếp địa; vệ sinh lcp s1">
+                  <td class="cell-wo">41148</td>
+                  <td class="cell-item">
+                    Tiểu tu MBA chính, MBA tự dùng và các vị trí nối với bus duct S1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT MBA, làm mát, sứ xuyên, rơ le bảo vệ, tiếp địa; vệ sinh LCP</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="40271"
+                    data-text="40271 tiểu tu mba kích từ s1 vệ sinh, đo cách điện; làm kín các vị trí rạn nứt keo silicone s1">
+                  <td class="cell-wo">40271</td>
+                  <td class="cell-item">
+                    Tiểu tu MBA kích từ S1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh, đo cách điện; làm kín các vị trí rạn nứt keo silicone</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="chung/bop"
+                    data-wo="30216"
+                    data-text="30216 tiểu tu động cơ hệ thống băng tải than vệ sinh động cơ, hộp đấu nối; kt vòng bi, đo điện trở cuộn dây chung/bop">
+                  <td class="cell-wo">30216</td>
+                  <td class="cell-item">
+                    Tiểu tu động cơ hệ thống băng tải than
+                    
+                  </td>
+                  <td><span class="hotspot-unit Chung/BOP">Chung/BOP</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh động cơ, hộp đấu nối; KT vòng bi, đo điện trở cuộn dây</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 90%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">90%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="41305"
+                    data-text="41305 tiểu tu các tủ 400 v swgr, mcc hệ thống esp nhánh 2a và 2b vệ sinh tủ, máy cắt, tiếp điểm; kt điều khiển, truyền động & tiếp địa s2">
+                  <td class="cell-wo">41305</td>
+                  <td class="cell-item">
+                    Tiểu tu các tủ 400 V SWGR, MCC hệ thống ESP nhánh 2A và 2B
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh tủ, máy cắt, tiếp điểm; KT điều khiển, truyền động & tiếp địa</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="41332"
+                    data-text="41332 tiểu tu các tủ 400 v swgr, mcc hệ thống esp nhánh 2a và 2b vệ sinh tủ, máy cắt, tiếp điểm; kt điều khiển, truyền động & tiếp địa s2">
+                  <td class="cell-wo">41332</td>
+                  <td class="cell-item">
+                    Tiểu tu các tủ 400 V SWGR, MCC hệ thống ESP nhánh 2A và 2B
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh tủ, máy cắt, tiếp điểm; KT điều khiển, truyền động & tiếp địa</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="41354"
+                    data-text="41354 tiểu tu các tủ 400 v swgr, mcc hệ thống esp nhánh 2a và 2b vệ sinh tủ, máy cắt, tiếp điểm; kt điều khiển, truyền động & tiếp địa s2">
+                  <td class="cell-wo">41354</td>
+                  <td class="cell-item">
+                    Tiểu tu các tủ 400 V SWGR, MCC hệ thống ESP nhánh 2A và 2B
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh tủ, máy cắt, tiếp điểm; KT điều khiển, truyền động & tiếp địa</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="38677"
+                    data-text="38677 tiểu tu động cơ máy nghiền than s2 vệ sinh động cơ, hộp nối; kt vòng bi, đo cách điện & chạy thử s2">
+                  <td class="cell-wo">38677</td>
+                  <td class="cell-item">
+                    Tiểu tu động cơ máy nghiền than S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh động cơ, hộp nối; KT vòng bi, đo cách điện & chạy thử</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="39030"
+                    data-text="39030 tiểu tu động cơ i.d. fan a/b s2 vệ sinh động cơ, máy cắt; kt vòng bi, đo kiểm và chạy thử s2">
+                  <td class="cell-wo">39030</td>
+                  <td class="cell-item">
+                    Tiểu tu động cơ I.D. Fan A/B S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh động cơ, máy cắt; KT vòng bi, đo kiểm và chạy thử</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="42774"
+                    data-text="42774 tiểu tu thiết bị kiểm nhiệt hệ thống sas, fdf, scah và gah s1 kt tín hiệu điều khiển damper hộp gió fdf 1a; xử lý oxy hóa s1">
+                  <td class="cell-wo">42774</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống SAS, FDF, SCAH và GAH S1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT tín hiệu điều khiển damper hộp gió FDF 1A; xử lý oxy hóa</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s1"
+                    data-wo="41721"
+                    data-text="41721 tiểu tu thiết bị kiểm nhiệt hệ thống feed water s1 kt, hiệu chuẩn transmitter áp suất; phối hợp lắp cảm biến rung s1">
+                  <td class="cell-wo">41721</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống Feed Water S1
+                    
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT, hiệu chuẩn transmitter áp suất; phối hợp lắp cảm biến rung</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45425"
+                    data-text="45425 tiểu tu thiết bị kiểm nhiệt hệ thống pas, paf s2 kt cảm biến điều khiển, trạm dầu bôi trơn & góc cánh quạt paf s2">
+                  <td class="cell-wo">45425</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống PAS, PAF S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT cảm biến điều khiển, trạm dầu bôi trơn & góc cánh quạt PAF</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45295"
+                    data-text="45295 tiểu tu thiết bị kiểm nhiệt hệ thống condensate vacuum s2 vệ sinh, hiệu chuẩn transmitter áp suất; kt tín hiệu dcs s2">
+                  <td class="cell-wo">45295</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống Condensate Vacuum S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh, hiệu chuẩn transmitter áp suất; KT tín hiệu DCS</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45323"
+                    data-text="45323 tiểu tu thiết bị kiểm nhiệt hệ thống auxiliary cooling water s2 vệ sinh màng chênh áp; kt tín hiệu dcs và đóng/mở van mov s2">
+                  <td class="cell-wo">45323</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống Auxiliary Cooling Water S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">Vệ sinh màng chênh áp; KT tín hiệu DCS và đóng/mở van MOV</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="dien_ci"
+                    data-category="trong_kh"
+                    data-unit="s2"
+                    data-wo="45657"
+                    data-text="45657 tiểu tu thiết bị kiểm nhiệt hệ thống closed cooling water s2 kt đầu nối, xử lý oxy hóa; kt cơ cấu chấp hành & đóng mở van s2">
+                  <td class="cell-wo">45657</td>
+                  <td class="cell-item">
+                    Tiểu tu thiết bị kiểm nhiệt hệ thống Closed Cooling Water S2
+                    
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Điện & C&I</td>
+                  <td class="cell-desc">KT đầu nối, xử lý oxy hóa; KT cơ cấu chấp hành & đóng mở van</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s2"
+                    data-wo="45480"
+                    data-text="45480 thay thế các khớp giãn nở đường khói hệ thống fgd s2 mở pct, kt an toàn và tháo tôn bao che khớp giãn nở ggh s2">
+                  <td class="cell-wo">45480</td>
+                  <td class="cell-item">
+                    Thay thế các khớp giãn nở đường khói hệ thống FGD S2
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S2">S2</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Mở PCT, KT an toàn và tháo tôn bao che khớp giãn nở GGH</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 5%; background-color: #D0342C;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #D0342C; width: 34px; text-align: right;">5%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="44725"
+                    data-text="44725 kiểm tra, xử lý nứt mối hàn tại ống góp đầu vào bộ quá nhiệt final rh lò hơi 1 pt mối hàn, phát hiện nứt support; hàn hoàn thiện, gia nhiệt & sửa s1">
+                  <td class="cell-wo">44725</td>
+                  <td class="cell-item">
+                    Kiểm tra, xử lý nứt mối hàn tại ống góp đầu vào bộ quá nhiệt Final RH lò hơi 1
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">PT mối hàn, phát hiện nứt support; hàn hoàn thiện, gia nhiệt & sửa</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 70%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">70%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="39652"
+                    data-text="39652 đại tu bơm nước cấp dẫn động bằng turbine 1b p1lac30ap001 tổ máy 1 lắp chèn, lắp radial bearing, chỉnh di trục và lắp coupling bơm s1">
+                  <td class="cell-wo">39652</td>
+                  <td class="cell-item">
+                    Đại tu bơm nước cấp dẫn động bằng Turbine 1B P1LAC30AP001 Tổ máy 1
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Lắp chèn, lắp radial bearing, chỉnh di trục và lắp coupling bơm</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 85%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">85%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="39657"
+                    data-text="39657 đại tu bơm tăng áp dẫn động bằng turbine 1b p1lac31ap001 tổ máy 1 kiểm tâm, cân tâm bơm; lắp lại đường ống, tín hiệu & hoàn thiện s1">
+                  <td class="cell-wo">39657</td>
+                  <td class="cell-item">
+                    Đại tu bơm tăng áp dẫn động bằng Turbine 1B P1LAC31AP001 Tổ máy 1
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Kiểm tâm, cân tâm bơm; lắp lại đường ống, tín hiệu & hoàn thiện</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="32644"
+                    data-text="32644 kiểm tra, xử lý bfpt 1a bị rò chèn phía de thực hiện cân tâm bơm bfpt 1a s1">
+                  <td class="cell-wo">32644</td>
+                  <td class="cell-item">
+                    Kiểm tra, xử lý BFPT 1A bị rò chèn phía DE
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Thực hiện cân tâm bơm BFPT 1A</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 85%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">85%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="39018"
+                    data-text="39018 kiểm tra/xử lý van cv1/cv2-s1 rò nhớt tại cổng l1 actuator 1 tháo lắp ống tín hiệu; thay actuator cv2 và hiệu chỉnh hành trình s1">
+                  <td class="cell-wo">39018</td>
+                  <td class="cell-item">
+                    Kiểm tra/xử lý van CV1/CV2-S1 rò nhớt tại cổng L1 Actuator 1
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Tháo lắp ống tín hiệu; thay actuator CV2 và hiệu chỉnh hành trình</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 90%; background-color: #F5A623;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #F5A623; width: 34px; text-align: right;">90%</span>
+                      
+                    </div>
+                  </td>
+                </tr>
+              
+                <tr class="completed-row" 
+                    data-group="co_nhiet"
+                    data-category="ngoai_kh"
+                    data-unit="s1"
+                    data-wo="39020"
+                    data-text="39020 kiểm tra/xử lý van msv-s1 thường xuyên không đóng mở được trong quá trình khởi động tổ máy 1 phối hợp ci thực hiện hiệu chuẩn van msv s1">
+                  <td class="cell-wo">39020</td>
+                  <td class="cell-item">
+                    Kiểm tra/xử lý van MSV-S1 thường xuyên không đóng mở được trong quá trình khởi động Tổ máy 1
+                    <span class="tag-category unplanned" style="margin-left: 4px;">Ngoài KH</span>
+                  </td>
+                  <td><span class="hotspot-unit S1">S1</span></td>
+                  <td style="font-weight: 600; color: var(--pvp-text-muted); font-size: 12px;">Cơ nhiệt</td>
+                  <td class="cell-desc">Phối hợp CI thực hiện hiệu chuẩn van MSV</td>
+                  <td>
+                    <div class="prog-cell-wrap">
+                      <div class="progress-bar-bg" style="height: 6px;">
+                        <div class="progress-bar-fill" style="width: 100%; background-color: #009D48;"></div>
+                      </div>
+                      <span style="font-weight: 800; font-size: 12px; color: #009D48; width: 34px; text-align: right;">100%</span>
+                      <span class="check-icon">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ⑥ Kế hoạch ngày kế tiếp -->
+      <section class="plan-panel">
+        <div class="panel-title">
+          <span>📅 KẾ HOẠCH NGÀY 28/08/2026 (21 ĐẦU VIỆC)</span>
+        </div>
+        <div class="plan-tasks-grid">
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Lắp hoàn thiện vòi thổi bụi GGH; gia công đường ống cho máy rửa GGH lắp thêm
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục kiểm tra bảo dưỡng các quạt oxidation
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Thay mới bơm nhớt bôi trơn A
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Kiểm tra tình trạng coupling bơm; thay thế lọc rút hơi bồn nhớt hệ thống nhớt bôi trơn Turbine Tổ máy 1
+                
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục công tác các gối trục pulley SR41
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục công tác các gối trục pulley băng tải, hộp giảm tốc băng tải than P0EAC41
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục tháo gối trục bánh xe di chuyển SR41
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục kiểm tra tháo thay mới gàu CSU02 bị mòn
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục kiểm tra bơm Eco lò 1 và Bottom ASH silo
+                
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục vệ sinh sơn chống gỉ SR42
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Bơm mỡ các gối đỡ damper khói gió
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục hàn gia cố vỏ bảo vệ các con lăn máy nghiền than S2
+                
+                <span class="hotspot-unit S2" style="margin-left: 4px; font-size: 10px;">S2</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Thay mới nhớt GAH 2A và 2B
+                
+                <span class="hotspot-unit S2" style="margin-left: 4px; font-size: 10px;">S2</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tháo khớp giãn nở GGH inlet
+                
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Cân tâm bơm nước cấp dẫn động bằng Turbine 1B
+                
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Lắp lại các đường ống, tín hiệu kết nối với bơm BFPT 1A
+                
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Lắp lại bảo ôn khu vực van CV1, CV2
+                
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiếp tục bảo dưỡng động cơ hệ thống băng tải than; đo kiểm, lắp hoàn thiện
+                <span class="task-wo-tag">WO 30216</span>
+                
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Thay vòng bi động cơ GAH Rotor Drive 2B; lắp ráp, đo kiểm, căn chỉnh khớp nối và chạy thử
+                <span class="task-wo-tag">WO 45540</span>
+                <span class="hotspot-unit S2" style="margin-left: 4px; font-size: 10px;">S2</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiểu tu các MBA trường hệ thống ESP, khoang sứ cực phóng S1: tiếp tục vệ sinh sứ, đo cách điện MBA
+                <span class="task-wo-tag">WO 41556</span>
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+            <div class="plan-task-item">
+              <span class="task-bullet"></span>
+              <div class="task-content">
+                Tiểu tu các thiết bị kiểm nhiệt hệ thống ESP S1: vệ sinh cảm biến, siết đấu nối, kiểm tra đường truyền tín hiệu lên DCS
+                <span class="task-wo-tag">WO 42107</span>
+                <span class="hotspot-unit S1" style="margin-left: 4px; font-size: 10px;">S1</span>
+              </div>
+            </div>
+          
+        </div>
+      </section>
+    </div>
+
+    <!-- ⑦ FOOTER -->
+    <footer class="dashboard-footer">
+      <div class="footer-assessment">
+        <span class="footer-dot"></span>
+        <span><strong>Đánh giá chung:</strong> Đến thời điểm hiện tại, các hạng mục tiểu tu đang được thực hiện theo đúng tiến độ và kế hoạch đã đề ra.</span>
+      </div>
+      <div class="footer-unit">
+        Đơn vị thực hiện: <span>PX.BDSC</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    let currentFilter = 'all';
+
+    function filterWOs(filter, el) {
+      currentFilter = filter;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (el) el.classList.add('active');
+      applyFilters();
+    }
+
+    function handleSearch() {
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+      const rows = document.querySelectorAll('#woTable tbody tr');
+
+      rows.forEach(row => {
+        const text = row.getAttribute('data-text') || '';
+        const group = row.getAttribute('data-group');
+        const category = row.getAttribute('data-category');
+        const unit = row.getAttribute('data-unit');
+
+        let matchFilter = true;
+        if (currentFilter === 'co_nhiet') matchFilter = (group === 'co_nhiet');
+        else if (currentFilter === 'dien_ci') matchFilter = (group === 'dien_ci');
+        else if (currentFilter === 'ngoai_kh') matchFilter = (category === 'ngoai_kh');
+        else if (currentFilter === 's1') matchFilter = (unit === 's1');
+        else if (currentFilter === 's2') matchFilter = (unit === 's2');
+
+        const matchSearch = !q || text.includes(q);
+
+        if (matchFilter && matchSearch) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
